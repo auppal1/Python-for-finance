@@ -1,0 +1,97 @@
+VaR: Value at risk
+This is the potential loss in value of a risky portfolio/asset given these inputs:
+- A specified time period - time frame in which we would want to measure the VaR
+- A confidence level 
+
+VaR methods
+
+------------------------------------Parametric method-----------------------------------------
+- Assumes returns follow a specific probability distribution (usually normal) using the
+mean and std dev of historical returns to estimate potential losses at a given confidence level.
+
+VaR remains a one tail test as we are only looking at potential losses
+
+Inputs:
+- Time = 1 year
+- Confidence Level = 95%
+    - Z-score (z) = 1.65
+
+Stock characteristics 
+
+mean retun (μ) = 10%
+std dev (σ) = 10%
+
+VaR = μ - (σ*z)
+
+∴ 10%-(10%*1.65)
+  10%-16.5%
+= -6.5%
+
+What does this mean?
+
+we are looking at a 10% expected return but we are looking at our 5% percentile worst outcome
+(at 0.95 CI) which gives us a return of -6.5%
+
+What if CI increased?
+
+Inputs:
+- Time = 1 year
+- Confidence Level = 99%
+    - Z-score (z) = 2.33
+
+Stock characteristics 
+
+mean retun (μ) = 10%
+std dev (σ) = 10%
+
+VaR = μ - (σ*z)
+
+∴ 10%-(10%*2.33)
+ 10% - 23.3%
+= -13.3%
+
+This moves the tail further left to the distribution, showing us the 1% percentile worst outcome 
+(at 0.99 CI)of returns
+
+-----------------------------------Historical Method------------------------------------------
+
+Calculates VaR using historical returns, ranking them and then selecting the loss a the
+desired percentile
+
+Inputs:
+- Time = 1 day
+- Confidence Level = 99%
+
+Gather returns from last 500 trading days
+
+VaR = 100% - 99% = 1% percentile outcome
+
+In this instance, it is the 5th lowest
+
+-----------------------------------Monte Carlo method-----------------------------------------
+
+methodology:
+- Simulating numerous potential future price paths
+- Based on assests statistical properties (μ, σ)
+- Involves thousands of simulations
+- Calculates potential loss/ gain for each simulation
+- VaR is derived from distribution of simulated losses
+
+Starting portfolio = $1000
+
+mean retun (μ) = 10%
+std dev (σ) = 20%
+
+Thousands of simulations are run with these metrics. All simulations will start at $1000
+but will branch off in different directions dependent on the metrics plugged in.
+
+- Time = 1 year
+- Confidence Level = 95%
+
+After the simulations are carried out, we look at the year mark and look at the 5% percentile
+of lowest transactions that have occured. 
+
+Hypothetically, if at this confidence level, the final price is $600, that is a 40% loss
+($1000-$600) 
+
+∴ VaR = -40%
